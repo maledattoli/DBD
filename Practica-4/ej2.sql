@@ -5,14 +5,14 @@ Poda = (codPoda, fecha, DNI(fk), nroArbol(fk))*/
 /* */
 /*1. Listar especie, años, calle, nro y localidad de árboles podados por el podador ‘Juan Perez’ y por
 el podador ‘Jose Garcia’. */
-(SELECT DISTINCT a.especie, a.anios, a.calle, a.nro, l.nombreL
+(SELECT  a.especie, a.anios, a.calle, a.nro, l.nombreL
 from Localidad l 
 inner Join Arbol a on (l.codigoPostal = a.codigoPostal)
 inner join Poda pd on ( a.nroArbol = pd.nroArbol)
 inner join Podador pdd on (pd.ndi =pdd.dni)
 where po.nombre = 'Juan' and po.apellido = 'Perez')
 INTERSECT
-(SELECT DISTINCT a.especie, a.anios, a.calle, a.nro, l.nombreL
+(SELECT a.especie, a.anios, a.calle, a.nro, l.nombreL
 from Localidad l 
 inner Join Arbol a on (l.codigoPostal = a.codigoPostal)
 inner join Poda pd on ( a.nroArbol = pd.nroArbol)
@@ -95,7 +95,7 @@ SELECT pdd.dni, pdd.apellido, pdd.nombre, pdd.telefono, pdd.fnac
 FROM Arbol a inner JOIN Poda pd on (a.nroArbol = pd.nroArbol)
 inner JOIN Podador pdd on (pd.dni = pdd.dni)
 where a.especie = 'Cornífera'
-Except /*hace el distinct innecesario no---->>??? */ 
+Except /*hace el distinct innecesario no---->>??? sisis lo hace innecesario al distinct */ 
 SELECT pdd.dni, pdd.apellido, pdd.nombre, pdd.telefono, pdd.fnac
 FROM Arbol a inner JOIN Poda pd on (a.nroArbol = pd.nroArbol)
 inner JOIN Podador pdd on (pd.dni = pdd.dni)
